@@ -1,0 +1,328 @@
+---
+title: 'STAT 561: HW1: Linear Regression Model'
+author: "Prashanna Raj Pandit | Nazma Vali Shaik | Hema Sai Paruchuri"
+date: "2025-04-02"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question Number 1:
+
+## Load and Visualize Data
+```{r}
+pat_sat <- read.table("pat_stat.txt", header = TRUE)
+head(pat_sat)
+str(pat_sat)
+```
+
+### 1. (a) Histogram and Box Plot
+Prepare a histogram and box plot for each of the predictor variables using the hist() and
+boxplot() functions in R. Also use summary() to generate summaries for each of the predictor
+variables (do not produce the summary results). Are any noteworthy features revealed by these
+plots and your exploration? 
+
+-----------------------------
+In histogram, Severity is approximately symmetric (normal distribution), centered around 50–55.
+The patient age somehow appears slightly right-skewed, with most patients aged between 20 and 45.
+The anxiety score looks right skew but they are symmetrically distributed with low variability. The mean (2.287) and median (2.300) are very close, reinforcing symmetry.
+
+In box plot, There is an outlier in severity data
+
+```{r}
+predictor <- colnames(pat_sat)
+par(mfrow = c(2, 2))  # Set layout to display multiple plots
+for (col in predictor[2:length(predictor)]) {
+  hist(pat_sat[[col]], main = paste("Histogram of", col), 
+       xlab = col, col = "pink", border = "black")
+}
+```
+
+
+```{r}
+# Box Plot
+par(mfrow = c(2, 2))  
+for (col in predictor[2:length(predictor)]) {
+  boxplot(pat_sat[[col]], main = paste("Boxplot of", col), 
+          xlab = col, col = "pink", border = "black")
+}
+```
+
+### Summary
+```{r}
+summary(pat_sat[c("pat_age", "severity", "anxiety")])
+```
+
+### 1. (b) Scatter Plot Matrix and Correlation Matrix
+Interpretation:
+
+* patient satisfaction is inversely proportional with all of the predictors ( patient age, severity and anxiety) which means the patient satisfaction is decreasing with the increase in each of predictors.
+
+* The patient age has positive linear relationship with the severity and anxiety, which means severity and anxiety is increasing with the increase in age.
+
+* severity and anxiety are is also positively linear relation with each other.
+
+```{r}
+numeric_cols <- sapply(pat_sat, is.numeric) 
+numeric_data <- pat_sat[, numeric_cols]  
+pairs(numeric_data, main = "Scatter Plot Matrix of Predictors", col="darkgreen")
+
+correlation_matrix <- cor(pat_sat)
+print(correlation_matrix)
+```
+
+### 1. (c) Multiple Linear Regression Model
+he estimated regression function based on the multiple linear regression model is:
+
+*Y=158.4913−1.1416(pat_age)−0.4420(severity)−13.4702(anxiety)*
+
+Interpretation:
+The coefficient β2 =−0.4420 means that for each one-unit increase in the severity index (X₂), patient satisfaction (Y) is expected to decrease by 0.4420 units, assuming all other variables (age and anxiety) are held constant. 
+
+```{r}
+multi_reg_model <- lm(pat_sat ~ pat_age + severity + anxiety, data = pat_sat)
+summary(multi_reg_model)
+```
+
+### 1. (d) Significance of overall model
+Null Hypothesis (H₀): The model with all predictors (pat_age, severity, anxiety) does not significantly explain patient satisfaction. 
+
+*Ho:β1=β2=β3=0*
+
+Alternative Hypothesis (H₁): At least one of the predictors has a significant relationship with patient satisfaction. 
+
+*H1:At least one βi != 0*
+
+p-value: 1.542e-10 
+
+Since the p-value (1.542e-10) is much smaller than the significance level (α = 0.05), we reject the null hypothesis (H₀). 
+The overall model is statistically significant, meaning at least one of the predictors (pat_age, severity, anxiety) is related to patient satisfaction. 
+
+### 1. (e) Confidence Interval
+The 90% confidence interval for β1 (the coefficient for pat_age) is [-1.5029, -0.7803]. 
+
+It suggests that pat_age has a statistically significant negative effect on patient satisfaction at the 90% confidence level. This means we are 90% confident that for every one-year increase in patient age, satisfaction decreases by between 0.78 and 1.50 units, on average, while holding other factors constant. 
+```{r}
+confint(multi_reg_model, level = 0.9)
+```
+
+### 1. (f) Coefficient of multiple determination
+
+```{r r_squared}
+# R² value from model summary
+summary(multi_reg_model)$r.squared
+```
+The coefficient of multiple determination value produced by our model is R² = 0.6822 means that 68.22% of the variation in patient satisfaction (pat_sat) is explained by the predictor variables (pat_age, severity, and anxiety) in the model. 
+
+## 1. (g) Prediction on new data
+Interpreting prediction interval:
+
+The predicted patient satisfaction for this new patient is 69.01. 
+Based on a 90% prediction interval, we expect that a new observation of patient satisfaction for similar patients will fall between 48.01 and 90.01 with 90% confidence. 
+
+
+```{r}
+attach(pat_sat)
+new_data <- data.frame(pat_age = 35, severity = 45, anxiety = 2.2)
+predicted_value <- predict(multi_reg_model, newdata = new_data, interval = "prediction")
+print(predicted_value)
+```
+
+### 1. (h) Forward and backward selection
+Yes! Both forward and backward selection produced the same final model: 
+
+This means both methods agree that "severity" does not contribute significantly to the model and should be removed. 
+
+Intercept: 145.941228 
+
+pat_age: -1.200471 
+
+anxiety: -16.742052 
+
+```{r}
+# Begin with the null model
+null_model <- lm(pat_sat ~ 1, data = pat_sat)
+summary(null_model)
+
+full_model <- lm(pat_sat ~ ., data = pat_sat)
+
+forward <- step(null_model, direction = 'forward', 
+                scope = formula(full_model), trace = 1)
+forward$coefficients
+
+backward <- step(full_model, direction = 'backward', 
+                 scope = formula(full_model), trace = 1)
+backward$coefficients
+# Compare AIC values
+AIC(forward) 
+AIC(backward)
+```
+
+## Question Number: 2
+
+### 2. (a) Correlation between age and muscle
+Interpretation:
+The correlation coefficient (-0.866064) indicates a strong negative correlation between age and muscle mass. This means that as age increases, muscle mass tends to decrease. 
+
+```{r}
+muscle_mass <- read.table("muscle_mass.txt", header = TRUE)
+# visualizing first five data
+head(muscle_mass)
+# calculating correlation
+cor(muscle_mass)
+```
+
+### 2.(b) First Order Model
+Interpretation:
+Q. Good Fit?
+
+R² =0.7501 close to 1 indicates a good fit, meaning the model explains most of the variance in Y.
+
+
+```{r}
+first_order_model <- lm(mmass ~ age, data = muscle_mass)
+summary(first_order_model)
+
+plot(muscle_mass$age, muscle_mass$mmass, main = " First Order Regression Model", 
+     xlab = "Age", ylab = "Muscle Mass", pch = 19, col = "blue")
+abline(first_order_model, col = "red")
+```
+
+### 2. (c) Second Order Model
+
+```{r}
+second_order_model <- lm(mmass ~ age + I(age^2), data = muscle_mass)
+summary(second_order_model)
+```
+
+### 2. (d) Plot regression function (a) and (b) together
+
+```{r}
+
+plot(muscle_mass$age, muscle_mass$mmass, 
+     main = "First and second Order regression model", 
+     xlab = "Age", ylab = "Muscle Mass", 
+     pch = 19, col = "blue")
+
+abline(first_order_model, col = "red", lwd = 2)  # Red line for linear model
+
+age_seq <- seq(min(muscle_mass$age), max(muscle_mass$age), length.out = 100)  
+mmass_pred_quadratic <- predict(second_order_model, newdata = data.frame(age = age_seq))
+lines(age_seq, mmass_pred_quadratic, col = "green", lwd = 2)  # Green line for quadratic model
+
+legend("topright", legend = c("Linear Fit", "Quadratic Fit"), 
+       col = c("red", "green"), lty = 1, lwd = 2)
+```
+
+### 2. (e) Testing regression relation for the model (b)
+Interpretation: 
+The overall model is significant since the F-statistic p-value is < 2.2e-16, which is much smaller than 0.05. This means the second-order model provides a statistically significant regression relationship on the basis that there is at least one predictor which is significant.
+
+### 2. (f) 
+Interpretation:
+Since p = 0.08109 is greater alpha=0.05 we fail to reject the null hypothesis. 
+This means the quadratic term does not significantly improve the model at the 5% significance level. Therefore, we can drop the quadratic term and consider using the first-order model instead. 
+
+### 2.(g) Third Order Model
+Interpretation:
+The p-value of the cubic term β111= 0.719 which is very > than alpha=0.05, meaning we fail to reject the null hypothesis. This suggest that the cubic term does not significantly contribute the model.
+
+```{r}
+third_order_model <- lm(mmass ~ age + I(age^2) + I(age^3), data = muscle_mass)
+summary(third_order_model)
+```
+
+## Question Number 3: Qualitative predictors
+
+```{r}
+# Load the data
+cdi <- read.table("cdi.txt", header = TRUE)
+cdi <- cdi[, -1]  # Remove the first column
+
+# View structure and unique values of geographic_region
+str(cdi)
+unique(cdi$geographic_region)
+
+# Since we have 4 geographical regions, assume:
+# 1 = Northeast (Baseline)
+# 2 = North Central (X3)
+# 3 = South (X4)
+# 4 = West (X5)
+```
+
+
+```{r}
+## Convert Geographic Region to Factor
+library(dplyr)
+cdi$geographic_region <-factor(cdi$geographic_region)
+```
+
+### 3.(a) Fit Multiple Linear Regression Model
+
+#### Regression Equation:
+Y = B0 + B1X1 + B2X2 + B3X3 + B4X4 + B5X5 + E
+
+Where:  
+- **Y** = number_active_physicians (Dependent Variable)  
+- **X1** = total_population  
+- **X2** = total_personal_income_millions  
+- **X3, X4, X5** represent the geographic regions, encoded as dummy variables:
+
+  - **X3** = 1 if the region is **North Central**, 0 otherwise  
+  - **X4** = 1 if the region is **South**, 0 otherwise  
+  - **X5** = 1 if the region is **West**, 0 otherwise  
+
+The **Northeast** region is the reference category, meaning it is represented when **X3 = X4 = X5 = 0**.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Load required package
+library(knitr)
+
+# Create a data frame for the encoding table
+region_encoding <- data.frame(
+  "Geographic Region" = c("Northeast", "North Central", "South", "West"),
+  "X3 = North Central" = c(0, 1, 0, 0),
+  "X4 = South" = c(0, 0, 1, 0),
+  "X5 = West" = c(0, 0, 0, 1)
+)
+
+# Print the table using kable for better formatting
+kable(region_encoding, caption = "Encoding of Geographic Region Dummy Variables")
+
+```{r}
+model <- lm(number_active_physicians ~ total_population + total_personal_income_millions + geographic_region, data = cdi)
+```
+
+
+```{r}
+## Rename Coefficients
+names(model$coefficients) <- gsub("geographic_region2", "X3", names(model$coefficients))
+names(model$coefficients) <- gsub("geographic_region3", "X4", names(model$coefficients))
+names(model$coefficients) <- gsub("geographic_region4", "X5", names(model$coefficients))
+```
+
+### 3. (b) Coefficients β2 and β3 
+* B2 (Total Personal Income) = 0.107
+
+Represents the change in the number of active physicians for each additional unit increase in total personal income (in millions).
+
+**Interpretation:** For every 1 million dollar increase in total personal income, the number of active physicians increases by 0.107, assuming all other factors remain constant.
+
+The p-value (< 0.001) indicates strong statistical significance, meaning the relationship between personal income and physicians is robust.
+
+* B3 (North Central Region) = -3.493
+
+Represents the difference in the number of active physicians between the North Central and the reference category (Northeast).
+
+**Interpretation:** Compared to the Northeast (baseline region), being in the North Central is associated with 3.493 fewer active physicians, holding total personal income and population constant.
+
+However, the p-value (0.9647) is very high, indicating that this effect is not statistically significant, meaning there is no strong evidence that the number of physicians is truly different in the North Central region compared to the Northeast.
+
+```{r}
+summary(model)
+
+
