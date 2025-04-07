@@ -72,7 +72,7 @@ cor(muscle_mass)
 
 ############ First order model
 first_order_model<-lm(mmass~age,data = muscle_mass)
-s=summary(first_order_model)
+summary(first_order_model)
 s$coefficients
 str(first_order_model)
 pf(174.1,1,58, lower.tail=F) # p(F>174.1)

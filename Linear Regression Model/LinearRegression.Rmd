@@ -4,16 +4,15 @@ author: "Prashanna Raj Pandit | Nazma Vali Shaik | Hema Sai Paruchuri"
 date: "2025-04-02"
 output:
   html_document:
-    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Question Number 1:
+## Question Number 1:
 
-## Load and Visualize Data
+### Load and Visualize Data
 ```{r}
 pat_sat <- read.table("pat_stat.txt", header = TRUE)
 head(pat_sat)
@@ -66,6 +65,7 @@ Interpretation:
 
 * severity and anxiety are is also positively linear relation with each other.
 
+Extreme observations: The relationship between the predictors looks positive linear whereas the relationship between predictors and target is negative linear (inversely proportional)
 ```{r}
 numeric_cols <- sapply(pat_sat, is.numeric) 
 numeric_data <- pat_sat[, numeric_cols]  
@@ -112,11 +112,12 @@ confint(multi_reg_model, level = 0.9)
 
 ### 1. (f) Coefficient of multiple determination
 
+The coefficient of multiple determination value produced by our model is R² = 0.6822 means that 68.22% of the variation in patient satisfaction (pat_sat) is explained by the predictor variables (pat_age, severity, and anxiety) in the model. 
+
 ```{r r_squared}
 # R² value from model summary
 summary(multi_reg_model)$r.squared
 ```
-The coefficient of multiple determination value produced by our model is R² = 0.6822 means that 68.22% of the variation in patient satisfaction (pat_sat) is explained by the predictor variables (pat_age, severity, and anxiety) in the model. 
 
 ## 1. (g) Prediction on new data
 Interpreting prediction interval:
@@ -126,22 +127,19 @@ Based on a 90% prediction interval, we expect that a new observation of patient 
 
 
 ```{r}
-attach(pat_sat)
+
 new_data <- data.frame(pat_age = 35, severity = 45, anxiety = 2.2)
 predicted_value <- predict(multi_reg_model, newdata = new_data, interval = "prediction")
 print(predicted_value)
 ```
 
 ### 1. (h) Forward and backward selection
-Yes! Both forward and backward selection produced the same final model: 
+Yes! Both forward and backward selection produced the same final model. This means both methods agree that "severity" does not contribute significantly to the model and should be removed. 
 
-This means both methods agree that "severity" does not contribute significantly to the model and should be removed. 
+`pat_sat ~ pat_age + anxiety`
 
-Intercept: 145.941228 
-
-pat_age: -1.200471 
-
-anxiety: -16.742052 
+They produced identical coefficients and AIC values (AIC = 347.603), indicating they agree on the best model.  
+This model offers a good balance between explanatory power and model simplicity.
 
 ```{r}
 # Begin with the null model
@@ -200,6 +198,8 @@ summary(second_order_model)
 ```
 
 ### 2. (d) Plot regression function (a) and (b) together
+
+The second-order model is a better fit because it has a higher R-squared (0.7632 vs 0.7501 in first-order) and a lower residual standard error (8.026 vs 0.8173 in first-order), indicating improved explanatory power and better fit to the data.
 
 ```{r}
 
