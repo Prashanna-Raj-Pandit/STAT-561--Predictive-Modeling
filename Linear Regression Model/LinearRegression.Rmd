@@ -3,7 +3,7 @@ title: 'STAT 561: HW1: Linear Regression Model'
 author: "Prashanna Raj Pandit | Nazma Vali Shaik | Hema Sai Paruchuri"
 date: "2025-04-02"
 output:
-  html_document:
+  word_document:
 ---
 
 ```{r setup, include=FALSE}
@@ -26,11 +26,11 @@ variables (do not produce the summary results). Are any noteworthy features reve
 plots and your exploration? 
 
 -----------------------------
-In histogram, Severity is approximately symmetric (normal distribution), centered around 50–55.
+**In histogram**, Severity is approximately symmetric (normal distribution), centered around 50–55.
 The patient age somehow appears slightly right-skewed, with most patients aged between 20 and 45.
 The anxiety score looks right skew but they are symmetrically distributed with low variability. The mean (2.287) and median (2.300) are very close, reinforcing symmetry.
 
-In box plot, There is an outlier in severity data
+**In box plot**, The patient age ranges from 22 to 55 with median around 37.The value of severity ranges from approximately 40 to 60 with median at 50. There is also an outlier present in severity. The values of anxiety ranges from approximately 1.8 to 2.9 with median at 2.3.
 
 ```{r}
 predictor <- colnames(pat_sat)
@@ -76,7 +76,7 @@ print(correlation_matrix)
 ```
 
 ### 1. (c) Multiple Linear Regression Model
-he estimated regression function based on the multiple linear regression model is:
+The estimated regression function based on the multiple linear regression model is:
 
 *Y=158.4913−1.1416(pat_age)−0.4420(severity)−13.4702(anxiety)*
 
