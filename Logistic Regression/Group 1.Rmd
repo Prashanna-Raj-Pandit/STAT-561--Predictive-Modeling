@@ -18,7 +18,6 @@ library(nnet)
 # 1. Absenteesim data
 ```{r load-data}
 absent <- read_excel("Absenteeism_at_work.xls")
-names(absent)
 ```
 
 ## Recode and Factor Conversion
@@ -42,7 +41,6 @@ absent$Education <- factor(absent$Education,
                            levels = 1:4,
                            labels = c("High School", "Graduate", "Postgraduate", "Master/Doctor"))
 
-str(absent[c("Month_of_absence", "Day_of_the_week", "Seasons", "Education")])
 ```
 
 ## (a) How is the ‘Absenteeism time in hours’ distributed? Are there any noticeable patterns or outliers?
@@ -56,7 +54,7 @@ str(absent[c("Month_of_absence", "Day_of_the_week", "Seasons", "Education")])
 table(absent$Absenteeism_time_in_hours)
 hist(absent$Absenteeism_time_in_hours, main = "Distribution of Absenteeism Time",
      xlab = "Hours", col = "orange")
-summary(absent['Absenteeism_time_in_hours'])
+#summary(absent['Absenteeism_time_in_hours'])
 boxplot(absent$Absenteeism_time_in_hours, main = "Absenteeism Hours", col = "orange")
 
 ```
@@ -75,15 +73,6 @@ hist(absent$Age, main = "Age Distribution", xlab = "Age", col = "orange")
 
 ```{r eda-c}
 cor(absent$Distance_from_Residence_to_Work, absent$Absenteeism_time_in_hours, use = "complete.obs")
-
-plot(absent$Distance_from_Residence_to_Work, 
-     absent$Absenteeism_time_in_hours,
-     main = "Distance vs. Absenteeism",
-     xlab = "Distance from Residence to Work (km)",
-     ylab = "Absenteeism Time (hours)",
-     pch = 19, col = "black")
-abline(lm(Absenteeism_time_in_hours ~ Distance_from_Residence_to_Work, data = absent), 
-       col = "red", lwd = 2)
 
 ```
 
@@ -109,12 +98,17 @@ aggregate(Work_load_Average_in_days ~ absenteeism, data = absent, FUN = mean)
 **c.**For high absenteeism, the postgraduate group has the highest frequency, indicating that individuals with higher education levels might be more prone to higher absenteeism, although the total count is still small.
 
 **Conclusion:**
-Yes, there appears to be a correlation between education level and absenteeism. Individuals with a high school education show a strong association with low absenteeism, while those with postgraduate degrees show a relatively higher occurrence of high absenteeism, despite the smaller overall numbers.
+
+* High school–educated individuals are more frequently associated with low absenteeism.
+
+* Postgraduates appear slightly more often in the high absenteeism group.
+
+However, the statistical test (Chi-square) yielded a non-significant result (p = 0.7608), indicating that there is no strong statistical evidence of a correlation between education level and absenteeism in this dataset.
+
 
 ```{r eda-e}
 # For a single categorical column
 table(absent$Education)
-
 
 edu_abs_table <- table(absent$Education, absent$absenteeism)
 
@@ -126,6 +120,10 @@ barplot(edu_abs_table,
         main = "Absenteeism Category by Education Level",
         xlab = "Education Level",
         ylab = "Frequency")
+
+
+chisq.test(edu_abs_table)
+
 ```
 
 
@@ -154,25 +152,20 @@ cor_with_absence_sorted
 **Challenge to assumption:** Height is not commonly associated with absenteeism in workplace literature. This is unexpected because we typically expect health, stress, or distance to play a stronger role. This could be a spurious correlation, or height might be correlated with another latent variable like overall physical health or job type (e.g., taller individuals in more physically demanding roles).
 
 2. Weak correlation with Distance from Residence to Work (r = 0.088)
+
 **Challenge to assumption:** Many assume that longer commutes lead to higher absenteeism due to fatigue, delays, or dissatisfaction. Here, distance has only a mild correlation, suggesting that commute distance might not be a strong standalone predictor—or that employees have adjusted to their commute.
 
 3. Minimal correlation with Body Mass Index (BMI) and Weight (r ≈ 0.05)
+
 **Challenge to assumption:** Health-related metrics like BMI are often thought to influence absenteeism due to illness.
 The weak correlation suggests that BMI/weight alone may not be a strong predictor of time missed from work, perhaps due to health-conscious policies or remote work flexibility.
 
 ## (h) Does service time (duration of service in the company) have any impact on the absenteeism rate?
 
-**Interpretation:** The correlation between Service Time and Absenteeism Time in Hours is 0.019, which is very close to zero. This means there is very less linear relationship between how long an employee has worked at the company and how much time they are absent. In other words, service time does not appear to influence absenteeism in a meaningful way. We can also see a horizontal line in the plot which tells the same thing.
+**Interpretation:** The correlation between Service Time and Absenteeism Time in Hours is 0.019, which is very close to zero. This means there is very less linear relationship between how long an employee has worked at the company and how much time they are absent. In other words, service time does not appear to influence absenteeism in a meaningful way. 
 
 ```{r eda-h}
 cor(absent$Service_time, absent$Absenteeism_time_in_hours, use = "complete.obs")
-
-plot(absent$Service_time, absent$Absenteeism_time_in_hours,
-     main = "Service Time vs. Absenteeism Time",
-     xlab = "Service Time (Years)",
-     ylab = "Absenteeism Time (Hours)",
-     col = "steelblue", pch = 16)
-abline(lm(Absenteeism_time_in_hours ~ Service_time, data = absent), col = "red", lwd = 2)
 
 ```
 
@@ -196,10 +189,8 @@ Yes, the day of the week does influence absenteeism.Employees are more likely to
 
 
 ```{r eda-i}
-table(absent$Day_of_the_week)
-
+#table(absent$Day_of_the_week)
 day_abs <- table(absent$Day_of_the_week, absent$absenteeism)
-
 barplot(t(day_abs),
         main = "Absenteeism Type by Day of the Week",
         col = c("green", "orange", "red"),
@@ -281,10 +272,10 @@ for (var in names(numeric_vars)) {
   boxplot(numeric_vars[[var]], 
           main = var,
           col = "orange",
-          cex.main = 1.1,    # Title size
-          cex.axis = 0.8,    # Axis label size
-          las = 2,           # Rotate x-axis labels vertically
-          horizontal = FALSE) # Explicit vertical orientation
+          cex.main = 1.1,    
+          cex.axis = 0.8,    
+          las = 2,           
+          horizontal = FALSE) 
 }
 
 # Add overall title
@@ -302,6 +293,7 @@ find_outliers <- function(x) {
 }
 
 outlier_list <- lapply(numeric_vars, find_outliers)
+outlier_list
 ```
 
 
@@ -313,8 +305,6 @@ absent$absenteeism <- relevel(absent$absenteeism, ref = "Low")
 logistic_model <- multinom(absenteeism ~ . -ID -Absenteeism_time_in_hours, data = absent, trace = FALSE)
 summary(logistic_model)
 
-exp(coef(logistic_model)[, "Son"])
-exp(coef(logistic_model)[, "Weight"])
 ```
 
 ## (b) Interpret the coefficients of the variables son and weight.
@@ -322,7 +312,7 @@ exp(coef(logistic_model)[, "Weight"])
 
 **1. Number of Children (Son):** For each additional child, the estimated odds of moderate absenteeism (vs low) decrease by 9.86474% (OR = 0.9013526), holding other predictors constant.
 
-Having more children increases the estimated odds of high absenteeism (vs low) by 107.03654% (OR = 2.0703654), holding other predictors constant.
+Having 1 more children increases the estimated odds of high absenteeism (vs low) by 107.03654% (OR = 2.0703654), holding other predictors constant.
 
 **2. Weight:** For each unit increase in weight:
 
@@ -338,7 +328,7 @@ exp(coef(logistic_model)[, "Weight"])
 ## (c) Backward selection 
 **Interpretation:**
 
-The final model suggests these five factors are most important in predicting absenteeism levels (Low/Moderate/High). Notably:
+The final model suggests these six factors are most important in predicting absenteeism levels (Low/Moderate/High). Notably:
 
 a) Distance_from_Residence_to_Work
 
@@ -350,9 +340,11 @@ d) Weight
 
 e) Body_mass_index
 
+f) Son
+
 ```{r backward-selection}
 step_model <- step(logistic_model, direction = "backward", trace = FALSE)
-summary(step_model)
+#summary(step_model)
 ```
 
 ## (d) Interpretation of Model's findings
@@ -373,18 +365,19 @@ Recommendations:
 * Offer commuter benefits (shuttle services, transit subsidies)
 * Cluster geographically close employees on shared projects
 
-**2. Finding: Number of Children (Son) Has Dual Effects:** Each additional child decreased moderate absenteeism by 9.9% (parents prioritize consistency) But doubled high absenteeism odds (OR=2.07) likely due to emergencies
+**2. Finding: Day of the week:** Employees are significantly more likely to be absent at the start and end of the workweek, suggesting a “long weekend” pattern.
 
-**Practical Implications:**
+**Implications:**
 
-a) Parents balance reliability with unpredictable childcare needs
+a) Indicates low motivation after weekends or burnout by Friday.
 
-b) Inflexible policies exacerbate high-absence scenarios
+b) May affect productivity and team coordination.
 
-Recommendations:
+**Recommendations:**
 
-* Pilot "family shift swaps" allowing parent employees to trade shifts
-* Recognize reliable parents with attendance bonuses (reinforce positive behavior)
+* Offer flexible Monday starts or remote options.
+* Schedule key tasks midweek to maintain engagement.
+* Adjust staffing to ensure coverage on high-risk days.
 
 # Flu Shot Data
 
@@ -439,7 +432,7 @@ summary(flu_model)
 
 ## (c) State the fitted regression equation.
 
-**Regression Equation:** Flu_shot = -1.17716 + 0.07279 * Age + -0.09899 * awareness + 0.43397 * sex1
+**Regression Equation:** Flu_shot = -1.17716 + 0.07279 * Age -0.09899 * awareness + 0.43397 * sex1
 
 
 ## (d) Obtain exp(β1), exp(β2), exp(β3) and interpret these numbers.
@@ -475,9 +468,11 @@ So, there is no statistically significant evidence that client gender (X3) contr
 
 
 ```{r wald-test}
-wald_test <- summary(flu_model)$coefficients / summary(flu_model)$standard.errors
-p_values <- (1 - pnorm(abs(wald_test), 0, 1)) * 2
+wald_test <- summary(flu_model)$coefficients[, "Estimate"] / summary(flu_model)$coefficients[, "Std. Error"]
+# Calculate p-values from the Wald statistics
+p_values <- 2 * (1 - pnorm(abs(wald_test)))
 p_values
+
 ```
 
 
@@ -521,9 +516,8 @@ summary(model_backward)
 
 ## (i) How would you interpret β0 hat, β1 hat and β3 hat?
 
-**β0 hat (Intercept = -1.17716):** The intercept represents that estimated odds of receiving a flu shot for a person with:
-
-Age: 0, Awareness index: 0, sex =0 (female)  are approximately exp(-1.17716) = 0.31, or in other words, less than 1, indicating a low likelihood.
+**β0 hat (Intercept = -1.17716):** Intercept = -1.17716, meaning the odds of getting flu shot for an
+individual with average age, awareness, and sex0 (female) would be approximately exp(-1.17716) = 0.31 (baseline).
 
 **β1 hat (Age = 0.07279):** The estimated odds of getting flu shot increases by  7.55025% (factor of 1.0755025 ) with every 1 year increase in age, while holding all other variables constant.
 

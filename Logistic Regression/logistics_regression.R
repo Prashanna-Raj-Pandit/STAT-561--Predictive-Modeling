@@ -211,7 +211,6 @@ predicted_probability
 #Wald test for variable significance
 # This gives the z-values (Wald statistics)
 wald_test <- summary(flu_model)$coefficients[, "Estimate"] / summary(flu_model)$coefficients[, "Std. Error"]
-
 # Calculate p-values from the Wald statistics
 p_values <- 2 * (1 - pnorm(abs(wald_test)))
 p_values
