@@ -119,11 +119,11 @@ library(dplyr)
 # Convert geographic region to factor
 cdi$geographic_region <- as.factor(cdi$geographic_region)
 model <- lm(number_active_physicians ~ total_population + total_personal_income_millions + geographic_region, data = cdi)
-#summary(model)
+summary(model)
 
-names(model$coefficients) <- gsub("geographic_region2", "X3", names(model$coefficients))
-names(model$coefficients) <- gsub("geographic_region3", "X4", names(model$coefficients))
-names(model$coefficients) <- gsub("geographic_region4", "X5", names(model$coefficients))
+#names(model$coefficients) <- gsub("geographic_region2", "X3", names(model$coefficients))
+#names(model$coefficients) <- gsub("geographic_region3", "X4", names(model$coefficients))
+#names(model$coefficients) <- gsub("geographic_region4", "X5", names(model$coefficients))
 
 summary(model)
 
