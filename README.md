@@ -14,7 +14,7 @@ Recoding variables (e.g., absenteeism categories)
 
 ## Exploratory Data Analysis (EDA):
 
-** Histograms, boxplots, and scatter plots for distribution and relationship analysis Correlation matrices to assess relationships between numeric variables Contingency tables and bar plots for categorical variables ** 
+Histograms, boxplots, and scatter plots for distribution and relationship analysis Correlation matrices to assess relationships between numeric variables Contingency tables and bar plots for categorical variables
 
 
 ## Regression Models:
@@ -26,20 +26,20 @@ Logistic Regression: Binary classification (e.g., loan approval, flu shot uptake
 Multinomial Logistic Regression: Multi-class classification (e.g., absenteeism categories)
 
 
-Regularization Techniques:
+## Regularization Techniques:
 
 Lasso Regression: Feature selection and shrinkage (e.g., absenteeism, customer churn)
 Ridge Regression: Handling multicollinearity (e.g., absenteeism, customer churn)
 Elastic Net Regression: Combining Lasso and Ridge with tuned alpha and lambda parameters
 
 
-Model Selection:
+## Model Selection:
 
 Forward and backward stepwise selection for variable selection
 Cross-validation (e.g., 5-fold, 10-fold) to optimize model parameters
 
 
-Model Diagnostics:
+## Model Diagnostics:
 
 Residual plots (vs. fitted values, predictors, observation order) to check linearity, homoscedasticity, and independence
 Q-Q plots and histograms for normality of residuals
@@ -47,14 +47,14 @@ Variance Inflation Factor (VIF) for multicollinearity checks
 Overdispersion checks for Poisson models
 
 
-Model Evaluation:
+## Model Evaluation:
 
 Metrics: RMSE, R-squared, accuracy, sensitivity, specificity, AUC, and confusion matrices
 ROC curves for binary classification models
 Comparison of model performance across different techniques
 
 
-Visualization:
+## Visualization:
 
 Scatter plot matrices (pairs plots)
 Residual diagnostic plots
@@ -62,7 +62,7 @@ Bar plots and stacked bar plots for categorical data
 Regression line and curve fitting (e.g., linear, quadratic, cubic models for muscle mass)
 
 
-Applications:
+## Applications:
 
 Predicting absenteeism time and categories in workplace data
 Modeling customer churn and frequency of use in telecom data
@@ -75,24 +75,24 @@ Predicting loan approval based on applicant characteristics
 
 
 
-Repository Structure
+## Repository Structure
 
-HW4.R: Analysis of absenteeism data using Lasso, Ridge, and Elastic Net regression for continuous outcomes and Lasso for multinomial classification.
-Project.R: Customer churn analysis with Poisson, Negative Binomial, Ridge, and Lasso regression, plus logistic regression for complaint prediction with SMOTE for class imbalance.
-LinearRegression.R: Linear regression models for patient satisfaction, muscle mass (with polynomial terms), and physician counts, including forward/backward selection.
-logistics_regression.R: Multinomial logistic regression for absenteeism categories and binary logistic regression for flu shot uptake, with EDA and model selection.
-Model diagnostics.pdf: Analysis of student performance (linear regression) and loan approval (logistic regression), with detailed model diagnostics and proposed interventions.
+**LinearRegression.R:**  Linear regression models for patient satisfaction, muscle mass (with polynomial terms), and physician counts, including forward/backward selection.
+**logistics_regression.R:** Multinomial logistic regression for absenteeism categories and binary logistic regression for flu shot uptake, with EDA and model selection.
+**Model diagnostics.pdf:** Analysis of student performance (linear regression) and loan approval (logistic regression), with detailed model diagnostics and proposed interventions.
+**Model diagnostic.R:** Analysis of absenteeism data using Lasso, Ridge, and Elastic Net regression for continuous outcomes and Lasso for multinomial classification.
+**Project.R:** Customer churn analysis with Poisson, Negative Binomial, Ridge, and Lasso regression, plus logistic regression for complaint prediction with SMOTE for class imbalance.
 
-Installation
+## Installation
 To run the scripts in this repository, ensure you have R installed along with the required packages. Follow these steps:
 
-Install R from CRAN.
+## Install R from CRAN.
 Install the necessary R packages by running the following commands in R:
 
 install.packages(c("dplyr", "readxl", "ggplot2", "corrplot", "nnet", "caret", "MASS", "pROC", "car", "glmnet", "lattice", "DMwR2", "themis", "recipes"))
 
 
-Clone this repository to your local machine:
+## Clone this repository to your local machine:
 
 git clone https://github.com/your-username/your-repo-name.git
 
@@ -101,11 +101,11 @@ Set the working directory in R to the repository folder, e.g.:
 
 setwd("/path/to/your-repo-name")
 
-Usage
+## Usage
 Each script is self-contained and can be run independently in R or RStudio. Ensure the required datasets (e.g., Absenteeism_at_work.xls, Customer Churn.csv, pat_stat.txt, muscle_mass.txt, cdi.txt, flu shot.txt, Student_Performance.csv, loan_data.csv) are in the working directory or update the file paths in the scripts.
 To run a script:
 
-Open the script in R or RStudio (e.g., HW4.R).
+## Open the script in R or RStudio (e.g., HW4.R).
 Ensure the required dataset is available.
 Run the script to perform the analysis and generate outputs (e.g., model summaries, plots, performance metrics).
 
@@ -138,14 +138,3 @@ Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy,
 
 Contributing
 Contributions are welcome! If you have suggestions for improving the analyses, adding new models, or enhancing visualizations, please:
-
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Commit your changes (git commit -m "Add new feature").
-Push to the branch (git push origin feature-branch).
-Open a pull request.
-
-License
-This repository is licensed under the MIT License. See the LICENSE file for details.
-Contact
-For questions or feedback, please contact [Your Name] at [your.email@example.com] or open an issue in this repository.
