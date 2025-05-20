@@ -80,7 +80,7 @@ Predicting loan approval based on applicant characteristics
 **LinearRegression.R:**  Linear regression models for patient satisfaction, muscle mass (with polynomial terms), and physician counts, including forward/backward selection.
 **logistics_regression.R:** Multinomial logistic regression for absenteeism categories and binary logistic regression for flu shot uptake, with EDA and model selection.
 **Model diagnostics.pdf:** Analysis of student performance (linear regression) and loan approval (logistic regression), with detailed model diagnostics and proposed interventions.
-**Model diagnostic.R:** Analysis of absenteeism data using Lasso, Ridge, and Elastic Net regression for continuous outcomes and Lasso for multinomial classification.
+**Regularization.R:** Analysis of absenteeism data using Lasso, Ridge, and Elastic Net regression for continuous outcomes and Lasso for multinomial classification.
 **Project.R:** Customer churn analysis with Poisson, Negative Binomial, Ridge, and Lasso regression, plus logistic regression for complaint prediction with SMOTE for class imbalance.
 
 ## Installation
