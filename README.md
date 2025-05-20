@@ -138,3 +138,12 @@ Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy,
 
 Contributing
 Contributions are welcome! If you have suggestions for improving the analyses, adding new models, or enhancing visualizations, please:
+
+## Tableau visualization:
+
+<img width="1396" alt="project1" src="https://github.com/user-attachments/assets/5537771c-f775-4474-b77b-18f9b34d50bd" />
+
+<img width="1396" alt="project3" src="https://github.com/user-attachments/assets/a9d2f116-e819-44f8-9dc1-9bd3cf81ead9" />
+
+
+
