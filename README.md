@@ -1,10 +1,10 @@
-Predictive Modeling and Visualization Repository
-Overview
+# Predictive Modeling and Visualization Repository
+## Overview
 This repository contains R scripts and analyses for predictive modeling and data visualization, developed as part of coursework for STAT 561 at SIUE. The projects cover a range of statistical and machine learning techniques applied to diverse datasets, including absenteeism at work, customer churn, patient satisfaction, muscle mass, county demographic information (CDI), flu shot uptake, student performance, and loan approval prediction. The analyses include regression models, regularization techniques, and diagnostic visualizations to explore relationships and predict outcomes.
 Topics Covered
 The repository encompasses the following topics in predictive modeling and visualization:
 
-Data Preprocessing:
+## Data Preprocessing:
 
 Handling missing values (e.g., imputation in loan data)
 Converting variables to factors for categorical analysis
@@ -12,14 +12,12 @@ Data splitting into training, test, and holdout sets
 Recoding variables (e.g., absenteeism categories)
 
 
-Exploratory Data Analysis (EDA):
+## Exploratory Data Analysis (EDA):
 
-Histograms, boxplots, and scatter plots for distribution and relationship analysis
-Correlation matrices to assess relationships between numeric variables
-Contingency tables and bar plots for categorical variables
+** Histograms, boxplots, and scatter plots for distribution and relationship analysis Correlation matrices to assess relationships between numeric variables Contingency tables and bar plots for categorical variables ** 
 
 
-Regression Models:
+## Regression Models:
 
 Multiple Linear Regression: Predicting continuous outcomes (e.g., student performance, patient satisfaction)
 Poisson Regression: Modeling count data (e.g., frequency of use in customer churn)
