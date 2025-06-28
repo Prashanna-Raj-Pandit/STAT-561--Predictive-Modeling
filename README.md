@@ -1,8 +1,10 @@
-# Predictive Modeling and Visualization Repository
+# Predictive Modeling and Visualization
 ## Overview
 This repository contains R scripts and analyses for predictive modeling and data visualization, developed as part of coursework for STAT 561 at SIUE. The projects cover a range of statistical and machine learning techniques applied to diverse datasets, including absenteeism at work, customer churn, patient satisfaction, muscle mass, county demographic information (CDI), flu shot uptake, student performance, and loan approval prediction. The analyses include regression models, regularization techniques, and diagnostic visualizations to explore relationships and predict outcomes.
 Topics Covered
 The repository encompasses the following topics in predictive modeling and visualization:
+
+*Link to the dataset:* https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
 
 ## Data Preprocessing:
 
@@ -92,15 +94,6 @@ Install the necessary R packages by running the following commands in R:
 install.packages(c("dplyr", "readxl", "ggplot2", "corrplot", "nnet", "caret", "MASS", "pROC", "car", "glmnet", "lattice", "DMwR2", "themis", "recipes"))
 
 
-## Clone this repository to your local machine:
-
-git clone https://github.com/your-username/your-repo-name.git
-
-
-Set the working directory in R to the repository folder, e.g.:
-
-setwd("/path/to/your-repo-name")
-
 ## Usage
 Each script is self-contained and can be run independently in R or RStudio. Ensure the required datasets (e.g., Absenteeism_at_work.xls, Customer Churn.csv, pat_stat.txt, muscle_mass.txt, cdi.txt, flu shot.txt, Student_Performance.csv, loan_data.csv) are in the working directory or update the file paths in the scripts.
 To run a script:
@@ -146,4 +139,5 @@ Contributions are welcome! If you have suggestions for improving the analyses, a
 <img width="1396" alt="project3" src="https://github.com/user-attachments/assets/a9d2f116-e819-44f8-9dc1-9bd3cf81ead9" />
 
 
-
+**Reference:**
+Iranian Churn [Dataset]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C5JW3Z.
