@@ -4,14 +4,30 @@ This repository contains R scripts and analyses for predictive modeling and data
 Topics Covered
 The repository encompasses the following topics in predictive modeling and visualization:
 
-*Link to the dataset:* https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+**Link to the dataset:** 
+
+*Iranian Churn:* https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+*Patient satisfaction:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Linear%20Regression%20Model/pat_stat.txt
+*Absenteeism at work:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Logistic%20Regression/Absenteeism_at_work.xls
+*Flu shot:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Logistic%20Regression/flu%20shot.txt
+*Student Performance:* https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Model%20diagnostic/Student_Performance.csv
+*Loan Data:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Model%20diagnostic/loan_data.csv
+*muscle mass:* https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Linear%20Regression%20Model/muscle_mass.txt
+
+
+## Iranian Churn Analysis (Tableau):
+
+<img width="1396" alt="project1" src="https://github.com/user-attachments/assets/5537771c-f775-4474-b77b-18f9b34d50bd" />
+
+<img width="1396" alt="project3" src="https://github.com/user-attachments/assets/a9d2f116-e819-44f8-9dc1-9bd3cf81ead9" />
+
 
 ## Data Preprocessing:
 
-Handling missing values (e.g., imputation in loan data)
-Converting variables to factors for categorical analysis
-Data splitting into training, test, and holdout sets
-Recoding variables (e.g., absenteeism categories)
+* Handling missing values (e.g., imputation in loan data)
+* Converting variables to factors for categorical analysis
+* Data splitting into training, test, and holdout sets
+* Recoding variables (e.g., absenteeism categories)
 
 
 ## Exploratory Data Analysis (EDA):
@@ -131,13 +147,6 @@ Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy,
 
 Contributing
 Contributions are welcome! If you have suggestions for improving the analyses, adding new models, or enhancing visualizations, please:
-
-## Tableau visualization:
-
-<img width="1396" alt="project1" src="https://github.com/user-attachments/assets/5537771c-f775-4474-b77b-18f9b34d50bd" />
-
-<img width="1396" alt="project3" src="https://github.com/user-attachments/assets/a9d2f116-e819-44f8-9dc1-9bd3cf81ead9" />
-
 
 **Reference:**
 Iranian Churn [Dataset]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C5JW3Z.
