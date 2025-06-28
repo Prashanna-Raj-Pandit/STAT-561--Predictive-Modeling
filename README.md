@@ -38,64 +38,65 @@ The repository encompasses the following topics in predictive modeling and visua
 
 ## Exploratory Data Analysis (EDA):
 
-Histograms, boxplots, and scatter plots for distribution and relationship analysis Correlation matrices to assess relationships between numeric variables Contingency tables and bar plots for categorical variables
+* Histograms, boxplots, and scatter plots for distribution and relationship analysis 
+* Correlation matrices to assess relationships between numeric variables Contingency tables and bar plots for categorical variables
 
 
 ## Regression Models:
 
-Multiple Linear Regression: Predicting continuous outcomes (e.g., student performance, patient satisfaction)
-Poisson Regression: Modeling count data (e.g., frequency of use in customer churn)
-Negative Binomial Regression: Addressing overdispersion in count data
-Logistic Regression: Binary classification (e.g., loan approval, flu shot uptake)
-Multinomial Logistic Regression: Multi-class classification (e.g., absenteeism categories)
+* Multiple Linear Regression: Predicting continuous outcomes (e.g., student performance, patient satisfaction)
+* Poisson Regression: Modeling count data (e.g., frequency of use in customer churn)
+* Negative Binomial Regression: Addressing overdispersion in count data
+* Logistic Regression: Binary classification (e.g., loan approval, flu shot uptake)
+* Multinomial Logistic Regression: Multi-class classification (e.g., absenteeism categories)
 
 
 ## Regularization Techniques:
 
-Lasso Regression: Feature selection and shrinkage (e.g., absenteeism, customer churn)
-Ridge Regression: Handling multicollinearity (e.g., absenteeism, customer churn)
-Elastic Net Regression: Combining Lasso and Ridge with tuned alpha and lambda parameters
+* Lasso Regression: Feature selection and shrinkage (e.g., absenteeism, customer churn)
+* Ridge Regression: Handling multicollinearity (e.g., absenteeism, customer churn)
+* Elastic Net Regression: Combining Lasso and Ridge with tuned alpha and lambda parameters
 
 
 ## Model Selection:
 
-Forward and backward stepwise selection for variable selection
-Cross-validation (e.g., 5-fold, 10-fold) to optimize model parameters
+* Forward and backward stepwise selection for variable selection
+* Cross-validation (e.g., 5-fold, 10-fold) to optimize model parameters
 
 
 ## Model Diagnostics:
 
-Residual plots (vs. fitted values, predictors, observation order) to check linearity, homoscedasticity, and independence
-Q-Q plots and histograms for normality of residuals
-Variance Inflation Factor (VIF) for multicollinearity checks
-Overdispersion checks for Poisson models
+* Residual plots (vs. fitted values, predictors, observation order) to check linearity, homoscedasticity, and independence
+* Q-Q plots and histograms for normality of residuals
+* Variance Inflation Factor (VIF) for multicollinearity checks
+* Overdispersion checks for Poisson models
 
 
 ## Model Evaluation:
 
-Metrics: RMSE, R-squared, accuracy, sensitivity, specificity, AUC, and confusion matrices
-ROC curves for binary classification models
-Comparison of model performance across different techniques
+* Metrics: RMSE, R-squared, accuracy, sensitivity, specificity, AUC, and confusion matrices
+* ROC curves for binary classification models
+* Comparison of model performance across different techniques
 
 
 ## Visualization:
 
-Scatter plot matrices (pairs plots)
-Residual diagnostic plots
-Bar plots and stacked bar plots for categorical data
-Regression line and curve fitting (e.g., linear, quadratic, cubic models for muscle mass)
+* Scatter plot matrices (pairs plots)
+* Residual diagnostic plots
+* Bar plots and stacked bar plots for categorical data
+* Regression line and curve fitting (e.g., linear, quadratic, cubic models for muscle mass)
 
 
 ## Applications:
 
-Predicting absenteeism time and categories in workplace data
-Modeling customer churn and frequency of use in telecom data
-Analyzing patient satisfaction based on age, severity, and anxiety
-Studying muscle mass decline with age using polynomial regression
-Predicting physician counts based on demographic and regional factors
-Modeling flu shot uptake based on age, awareness, and sex
-Predicting student performance using academic preparation factors
-Predicting loan approval based on applicant characteristics
+* Predicting absenteeism time and categories in workplace data
+* Modeling customer churn and frequency of use in telecom data
+* Analyzing patient satisfaction based on age, severity, and anxiety
+* Studying muscle mass decline with age using polynomial regression
+* Predicting physician counts based on demographic and regional factors
+* Modeling flu shot uptake based on age, awareness, and sex
+* Predicting student performance using academic preparation factors
+* Predicting loan approval based on applicant characteristics
 
 
 
@@ -106,14 +107,6 @@ Predicting loan approval based on applicant characteristics
 **Model diagnostics.pdf:** Analysis of student performance (linear regression) and loan approval (logistic regression), with detailed model diagnostics and proposed interventions.
 **Regularization.R:** Analysis of absenteeism data using Lasso, Ridge, and Elastic Net regression for continuous outcomes and Lasso for multinomial classification.
 **Project.R:** Customer churn analysis with Poisson, Negative Binomial, Ridge, and Lasso regression, plus logistic regression for complaint prediction with SMOTE for class imbalance.
-
-## Installation
-To run the scripts in this repository, ensure you have R installed along with the required packages. Follow these steps:
-
-## Install R from CRAN.
-Install the necessary R packages by running the following commands in R:
-
-install.packages(c("dplyr", "readxl", "ggplot2", "corrplot", "nnet", "caret", "MASS", "pROC", "car", "glmnet", "lattice", "DMwR2", "themis", "recipes"))
 
 
 ## Usage
@@ -129,18 +122,7 @@ source("HW4.R")
 
 This will load the absenteeism dataset, preprocess it, fit regression models, and output test MSEs and classification errors.
 Datasets
-The analyses use the following datasets:
 
-Absenteeism_at_work.xls: Workplace absenteeism data with variables like hours absent, age, distance, and education.
-Customer Churn.csv: Telecom customer data with usage, demographic, and churn information.
-pat_stat.txt: Patient satisfaction data with age, severity, and anxiety.
-muscle_mass.txt: Muscle mass data with age and mass measurements.
-cdi.txt: County demographic data with population, income, and physician counts.
-flu shot.txt: Flu shot uptake data with age, awareness, and sex.
-Student_Performance.csv: Student performance data with study hours, scores, and other factors.
-loan_data.csv: Loan approval data with applicant income, credit history, and more.
-
-Note: Datasets are not included in this repository due to potential size or privacy constraints. Ensure you have access to these files or similar datasets to replicate the analyses.
 Example Outputs
 
 Absenteeism Analysis (HW4.R): Compares Lasso, Ridge, and Elastic Net models for predicting absenteeism hours (Test MSEs) and Lasso for classifying absenteeism categories (classification error).
@@ -151,8 +133,6 @@ Flu Shot (logistics_regression.R): Logistic regression for flu shot uptake, with
 Student Performance (Model diagnostics.pdf): Linear regression with cross-validation, achieving an R-squared of 0.9893 and RMSE of 1.99, with residual diagnostics confirming model assumptions.
 Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy, 100% sensitivity, and 50% specificity, with ROC curve analysis.
 
-Contributing
-Contributions are welcome! If you have suggestions for improving the analyses, adding new models, or enhancing visualizations, please:
 
 **Reference:**
 Iranian Churn [Dataset]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C5JW3Z.
