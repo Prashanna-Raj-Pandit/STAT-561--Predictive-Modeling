@@ -92,15 +92,6 @@ Install the necessary R packages by running the following commands in R:
 install.packages(c("dplyr", "readxl", "ggplot2", "corrplot", "nnet", "caret", "MASS", "pROC", "car", "glmnet", "lattice", "DMwR2", "themis", "recipes"))
 
 
-## Clone this repository to your local machine:
-
-git clone https://github.com/your-username/your-repo-name.git
-
-
-Set the working directory in R to the repository folder, e.g.:
-
-setwd("/path/to/your-repo-name")
-
 ## Usage
 Each script is self-contained and can be run independently in R or RStudio. Ensure the required datasets (e.g., Absenteeism_at_work.xls, Customer Churn.csv, pat_stat.txt, muscle_mass.txt, cdi.txt, flu shot.txt, Student_Performance.csv, loan_data.csv) are in the working directory or update the file paths in the scripts.
 To run a script:
