@@ -125,13 +125,13 @@ Datasets
 
 Example Outputs
 
-Absenteeism Analysis (HW4.R): Compares Lasso, Ridge, and Elastic Net models for predicting absenteeism hours (Test MSEs) and Lasso for classifying absenteeism categories (classification error).
-Customer Churn (Project.R): Compares Poisson, Negative Binomial, Ridge, and Lasso models for frequency of use (RMSE) and logistic regression for complaints (AUC, confusion matrix).
-Patient Satisfaction (LinearRegression.R): Linear regression model with forward/backward selection, predicting satisfaction based on age, severity, and anxiety.
-Muscle Mass (LinearRegression.R): Linear, quadratic, and cubic models for muscle mass vs. age, with visualization of regression fits.
-Flu Shot (logistics_regression.R): Logistic regression for flu shot uptake, with forward/backward selection and predicted probabilities.
-Student Performance (Model diagnostics.pdf): Linear regression with cross-validation, achieving an R-squared of 0.9893 and RMSE of 1.99, with residual diagnostics confirming model assumptions.
-Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy, 100% sensitivity, and 50% specificity, with ROC curve analysis.
+* Absenteeism Analysis (HW4.R): Compares Lasso, Ridge, and Elastic Net models for predicting absenteeism hours (Test MSEs) and Lasso for classifying absenteeism categories (classification error).
+* Customer Churn (Project.R): Compares Poisson, Negative Binomial, Ridge, and Lasso models for frequency of use (RMSE) and logistic regression for complaints (AUC, confusion matrix).
+* Patient Satisfaction (LinearRegression.R): Linear regression model with forward/backward selection, predicting satisfaction based on age, severity, and anxiety.
+* Muscle Mass (LinearRegression.R): Linear, quadratic, and cubic models for muscle mass vs. age, with visualization of regression fits.
+* Flu Shot (logistics_regression.R): Logistic regression for flu shot uptake, with forward/backward selection and predicted probabilities.
+* Student Performance (Model diagnostics.pdf): Linear regression with cross-validation, achieving an R-squared of 0.9893 and RMSE of 1.99, with residual diagnostics confirming model assumptions.
+* Loan Approval (Model diagnostics.pdf): Logistic regression with 85.53% accuracy, 100% sensitivity, and 50% specificity, with ROC curve analysis.
 
 
 **Reference:**
