@@ -7,11 +7,16 @@ The repository encompasses the following topics in predictive modeling and visua
 **Link to the dataset:** 
 
 *Iranian Churn:* https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+
 *Patient satisfaction:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Linear%20Regression%20Model/pat_stat.txt
+
 *Absenteeism at work:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Logistic%20Regression/Absenteeism_at_work.xls
+
 *Flu shot:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Logistic%20Regression/flu%20shot.txt
 *Student Performance:* https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Model%20diagnostic/Student_Performance.csv
+
 *Loan Data:*https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Model%20diagnostic/loan_data.csv
+
 *muscle mass:* https://github.com/Prashanna-Raj-Pandit/STAT-Predictive-Modeling/blob/main/Linear%20Regression%20Model/muscle_mass.txt
 
 
